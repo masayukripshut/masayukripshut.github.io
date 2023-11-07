@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+</head>
+<body>
+    <h1>Keranjang Belanja</h1>
+
+    <ul id="cart-items"></ul>
+    <p>Total: <span id="cart-total">Rp 0</span></p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            const total = localStorage.getItem('total');
+
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - Rp ${item.price}`;
+                cartItems.appendChild(li);
+            });
+
+            cartTotal.textContent = `Rp ${total}`;
+
+            // Clear the cart data from local storage
+            localStorage.removeItem('cart');
+            localStorage.removeItem('total');
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang Checkout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+    <script src="script.js"></script>
+</body>
+</html>
